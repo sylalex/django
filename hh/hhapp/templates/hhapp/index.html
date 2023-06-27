@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+Главная
+{% endblock %}
+{% block content %}
+            <!-- banner-text -->
+            <div class="container py-lg-5">
+            <div class="text-center wthree-title pb-sm-5 pb-3">
+                <h3 class="tittle-w3ls pb-4">Вакансии на hh.ru</h3>
+
+                    <div class="text-left">
+                        <table border="1">
+                            <th class="text-center">
+                               Вакансия
+                            </th>
+                            <th class="text-center">
+                               Город
+                            </th>
+                            <th class="text-center">
+                               Зарплата
+                            </th>
+                            {% for dct in vacancys %}
+                            <tr>
+                                <td>
+                                    {{ dct.name }}
+                                </td>
+                                <td class="text-center">
+                                    {{ dct.city }}
+                                </td>
+                                <td class="text-center">
+                                    {% if dct.salary_from != None and dct.salary_to != None %}
+                                    {{dct.salary_from}} - {{dct.salary_to}} {{dct.currency}}
+                                    {% elif dct.salary_from != None and dct.salary_to == None %}
+                                    от {{dct.salary_from}} {{dct.currency}}
+                                    {% elif dct.salary_from == None and dct.salary_to != None %}
+                                    до {{dct.salary_to}} {{dct.currency}}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
