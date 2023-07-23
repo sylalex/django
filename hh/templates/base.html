@@ -57,6 +57,19 @@
                         <li class="nav-item mr-3 mt-lg-0 mt-3">
                             <a class="nav-link" href="{% url 'hh:contact' %}">Контакты</a>
                         </li>
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'users:reg' %}">Регистрация</a>
+                        </li>
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link" href="{% url 'users:login' %}">Вход</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            Hi, {{ user.username }}
+                            <a class="nav-link" href="{% url 'users:logout' %}">Выход</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
 			</nav>

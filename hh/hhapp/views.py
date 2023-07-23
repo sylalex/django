@@ -61,3 +61,4 @@ class ParsingFormView(FormView):
     def form_valid(self, form):
         form.parsing()
         return super().form_valid(form)
+
