@@ -3,6 +3,16 @@ from contextlib import nullcontext
 from django.db import models
 
 
+class Name(models.Model):
+    name = models.CharField(max_length=256, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        abstract = True
+
+
 # Create your models here.
 class Vacancy(models.Model):
     name = models.CharField(max_length=256)
@@ -15,15 +25,17 @@ class Vacancy(models.Model):
         return self.name
 
 
-class City(models.Model):
-    name = models.CharField(max_length=256, unique=True)
+class City(Name):
+    pass
+    # name = models.CharField(max_length=256, unique=True)
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 
-class Currency(models.Model):
-    name = models.CharField(max_length=256, unique=True)
-
-    def __str__(self):
-        return self.name
+class Currency(Name):
+    pass
+    # name = models.CharField(max_length=256, unique=True)
+    #
+    # def __str__(self):
+    #     return self.name
