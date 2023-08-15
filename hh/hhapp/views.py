@@ -9,11 +9,16 @@ from django.core.mail import send_mail
 from django.views.generic import ListView
 from django.views.generic.edit import FormView
 
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def home(request):
     vacancys = Vacancy.objects.all()
-    return render(request, 'hhapp/index.html', context={'vacancys': vacancys})
+    paginator = Paginator(vacancys, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'hhapp/index.html', context={'page_obj': page_obj})
 
 
 def contact(request):
@@ -38,6 +43,7 @@ def contact(request):
 
 
 class VacancyListView(ListView):
+    paginate_by = 10
     model = Vacancy
     template_name = 'hhapp/index.html'
     context_object_name = 'vacancys'
