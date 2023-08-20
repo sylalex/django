@@ -14,11 +14,11 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def home(request):
-    vacancys = Vacancy.objects.all()
+    vacancys = Vacancy.objects.select_related('city', 'currency').all()
     paginator = Paginator(vacancys, 10)
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'hhapp/index.html', context={'page_obj': page_obj})
+    vacancys = paginator.get_page(page_number)
+    return render(request, 'hhapp/index.html', context={'vacancys': vacancys})
 
 
 def contact(request):
@@ -42,11 +42,11 @@ def contact(request):
     return render(request, 'hhapp/contact.html', {'form': form})
 
 
-class VacancyListView(ListView):
-    paginate_by = 10
-    model = Vacancy
-    template_name = 'hhapp/index.html'
-    context_object_name = 'vacancys'
+# class VacancyListView(ListView):
+#     paginate_by = 10
+#     model = Vacancy
+#     template_name = 'hhapp/index.html'
+#     context_object_name = 'vacancys'
 
 
 class ContactFormView(FormView):

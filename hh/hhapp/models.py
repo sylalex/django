@@ -16,10 +16,10 @@ class Name(models.Model):
 # Create your models here.
 class Vacancy(models.Model):
     name = models.CharField(max_length=256)
-    city = models.ForeignKey('City', on_delete=models.DO_NOTHING)
+    city = models.ForeignKey('City', on_delete=models.CASCADE)
     salary_from = models.IntegerField(blank=True, null=True)
     salary_to = models.IntegerField(blank=True, null=True)
-    currency = models.ForeignKey('Currency', on_delete=models.DO_NOTHING)
+    currency = models.ForeignKey('Currency', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

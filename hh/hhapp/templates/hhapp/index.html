@@ -42,18 +42,18 @@
 
                         <div class="pagination">
                             <span class="step-links">
-                                {% if page_obj.has_previous %}
+                                {% if vacancys.has_previous %}
                                     <a href="?page=1">&laquo;</a>
-                                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                                    <a href="?page={{ vacancys.previous_page_number }}">&lt;</a>
                                 {% endif %}
 
                                 <span class="current">
-                                    {{ page_obj.number }}
+                                    {{ vacancys.number }}
                                 </span>
 
-                                {% if page_obj.has_next %}
-                                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
-                                    <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                                {% if vacancys.has_next %}
+                                    <a href="?page={{ vacancys.next_page_number }}">&gt;</a>
+                                    <a href="?page={{ vacancys.paginator.num_pages }}">&raquo;</a>
                                 {% endif %}
                             </span>
                         </div>
