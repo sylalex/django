@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+Регистрация
+{% endblock %}
+{% block content %}
+     <!-- contact -->
+    <div class="agileits-services py-md-5 py-4">
+        <div class="container py-lg-5">
+            <div class="text-center wthree-title pb-sm-5 pb-3">
+                <h3 class="tittle-w3ls pb-4">Регистрация</h3>
+                <form method="post" class="f-color pt-3">
+                    {% csrf_token %}
+                            {{ form.as_div }}
+                            <button type="submit" class="btn btn-danger btn-block">Зарегистрироваться</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
