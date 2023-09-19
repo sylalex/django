@@ -15,8 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from hhapp.viewsets import VacancyViewSet, CityViewSet, CurrencyViewSet
+from rest_framework import routers
+
+
+router = routers.DefaultRouter()
+router.register(r'vacancies', VacancyViewSet)
+router.register(r'cities', CityViewSet)
+router.register(r'currencies', CurrencyViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(('hhapp.urls', 'hh'), namespace='hh')),
+    path('users/', include(('usersapp.urls', 'users'), namespace='users')),
+    path("__debug__/", include("debug_toolbar.urls")),
+    path('api/', include(router.urls))
 ]
