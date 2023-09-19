@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_kxq@$cj7=wz=t41o-qa4$lpg3il-uv3l74)vq@@2e#5ug4ixz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'testserver']
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'usersapp',
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_cleanup.apps.CleanupConfig',
 ]
 
@@ -108,6 +109,11 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
     ]
 }
 

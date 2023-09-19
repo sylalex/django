@@ -1,15 +1,16 @@
-from django.urls import path, include
 from .models import Vacancy, City, Currency
 from rest_framework import serializers
 
 
 class VacancySerializer(serializers.HyperlinkedModelSerializer):
     city = serializers.HyperlinkedRelatedField(
-        read_only=True,
+        # read_only=True,
+        queryset=City.objects.all(),
         view_name='city-detail',
     )
     currency = serializers.HyperlinkedRelatedField(
-        read_only=True,
+        # read_only=True,
+        queryset=Currency.objects.all(),
         view_name='currency-detail',
     )
 
